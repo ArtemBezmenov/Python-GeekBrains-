@@ -12,8 +12,3 @@ with open('salary.txt',encoding='utf-8') as file:
         if zarplata <= 50000:
             name = sline[0].upper()
             print(f'{name} - {zarplata}')
-
-
-
-
-
