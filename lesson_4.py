@@ -31,7 +31,8 @@ def check_account(person):
 
 
 def withdraw_money(person, money):
-    if person['money'] - money >= 0:  # Было == - это не имеет смысла, т.к. исключает вариант при котором сумма снятия меньше суммы на нашем счете
+    if person[
+        'money'] - money >= 0:  # Было == - это не имеет смысла, т.к. исключает вариант при котором сумма снятия меньше суммы на нашем счете
         person['money'] -= money
         return 'Вы сняли {} рублей.'.format(money)
     else:
@@ -39,11 +40,14 @@ def withdraw_money(person, money):
 
 
 def process_user_choice(choice, person):
-    if choice == 1: #Здесь type str изменили на type int, т.к. choice в start - integer!
-        print(check_account(person))
-    elif choice == 2:
-        count = float(input('Сумма к снятию:'))
-        print(withdraw_money(person, count))
+    try:
+        if choice == 1:  # Здесь type str изменили на type int, т.к. choice в start - integer!
+            print(check_account(person))
+        elif choice == 2:
+            count = float(input('Сумма к снятию:'))
+            print(withdraw_money(person, count))
+    except ValueError:
+        print('Неверно введена сумма к снятию!')
 
 
 def start():
@@ -66,7 +70,9 @@ def start():
         else:
             print('Номер карты или пин код введены не верно!')
     except ValueError:
-        print('Некорректный ввод данных!')
+        print('Номер карты или пин код введены не верно!')
     except KeyboardInterrupt:
         print('Ошибка при вводе данных!')
+
+
 start()
